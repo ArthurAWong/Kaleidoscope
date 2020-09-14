@@ -1,0 +1,3 @@
+[submodule "Kaleidoscope/vendor/spdlog"]
+	path = Kaleidoscope/vendor/spdlog
+	url = https://github.com/gabime/spdlog.git

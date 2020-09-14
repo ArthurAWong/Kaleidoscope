@@ -4,6 +4,7 @@
 // use this
 
 #include "Kaleidoscope/Application.h"
+#include "Kaleidoscope/Log.h"
 
 //-Entry Point-------------------------------
 
