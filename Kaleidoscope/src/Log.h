@@ -1,10 +1,9 @@
 #pragma once
 
-#include "Core.h"
 #include "spdlog/spdlog.h"
 
 namespace Kaleidoscope {
-	class KALEIDOSCOPE_API Log {
+	class Log {
 		
 	public:
 		static void Init();

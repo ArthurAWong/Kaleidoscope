@@ -1,5 +1,5 @@
 workspace "Kaleidoscope"
-	architecture "x64"
+	architecture "x32"
 
 	configurations {
 		"Debug",
@@ -11,51 +11,6 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 project "Kaleidoscope"
 	location "Kaleidoscope"
-	kind "SharedLib"
-
-	language "C++"
-
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-
-	files {
-		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
-		}
-
-	includedirs {
-	"%{prj.name}/vendor/spdlog/include"
-	}
-
-	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "On"
-		systemversion "latest"
-
-		defines {
-			"KS_PLATFORM_WINDOWS",
-			"KS_BUILD_DLL"
-		}
-
-		postbuildcommands {
-			({"{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox"})
-		}
-	
-	filter "configurations:Debug"
-		defines "KS_DEBUG"
-		symbols "On"
-
-	filter "configurations:Release"
-		defines "KS_RELEASE"
-		optimize "On"
-
-	filter "configurations:Dist"
-		defines "KS_DIST"
-		optimize "On"
-
-project "Sandbox"
-
-	location "Sandbox"
 	kind "ConsoleApp"
 
 	language "C++"
@@ -66,24 +21,29 @@ project "Sandbox"
 	files {
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp"
-	}
+		}
 
 	includedirs {
-	"Kaleidoscope/vendor/spdlog/include",
-	"Kaleidoscope/src"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{prj.name}/vendor/GLFW/include"
+	}
+
+	libdirs {
+		"%{prj.name}/vendor/GLFW/lib-vc2019"
 	}
 
 	links {
-		"Kaleidoscope"
+		"opengl32.lib",
+		"glfw3.lib"
 	}
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
+		staticruntime "off"
 		systemversion "latest"
 
 		defines {
-			"KS_PLATFORM_WINDOWS"
+			"KS_PLATFORM_WINDOWS",
 		}
 	
 	filter "configurations:Debug"

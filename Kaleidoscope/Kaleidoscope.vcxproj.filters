@@ -6,26 +6,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Kaleidoscope.h" />
-    <ClInclude Include="src\Kaleidoscope\Application.h">
-      <Filter>Kaleidoscope</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Kaleidoscope\Core.h">
-      <Filter>Kaleidoscope</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Kaleidoscope\EntryPoint.h">
-      <Filter>Kaleidoscope</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Kaleidoscope\Log.h">
-      <Filter>Kaleidoscope</Filter>
-    </ClInclude>
+    <ClInclude Include="src\Event.h" />
+    <ClInclude Include="src\Log.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Kaleidoscope\Application.cpp">
-      <Filter>Kaleidoscope</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Kaleidoscope\Log.cpp">
-      <Filter>Kaleidoscope</Filter>
-    </ClCompile>
+    <ClCompile Include="src\Event.cpp" />
+    <ClCompile Include="src\Log.cpp" />
+    <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
 </Project>
