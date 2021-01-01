@@ -1,3 +1,6 @@
 [submodule "Kaleidoscope/vendor/spdlog"]
 	path = Kaleidoscope/vendor/spdlog
 	url = https://github.com/gabime/spdlog.git
+[submodule "Kaleidoscope/vendor/GLFW"]
+	path = Kaleidoscope/vendor/GLFW
+	url = https://github.com/glfw/glfw
