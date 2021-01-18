@@ -9,6 +9,77 @@ workspace "Kaleidoscope"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+project "GLFW"
+	GLFWLocation = "Kaleidoscope/vendor/GLFW/"
+	kind "StaticLib"
+
+	language "C"
+
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	files {
+		GLFWLocation .. "include/GLFW/glfw3.h",
+		GLFWLocation .. "include/GLFW/glfw3native.h",
+		GLFWLocation .. "src/glfw_config.h",
+		GLFWLocation .. "src/context.c",
+		GLFWLocation .. "src/init.c",
+		GLFWLocation .. "src/input.c",
+		GLFWLocation .. "src/monitor.c",
+		GLFWLocation .. "src/vulkan.c",
+		GLFWLocation .. "src/window.c"
+		}
+
+	filter "system:windows"
+		staticruntime "on"
+		systemversion "latest"
+
+		files {
+			GLFWLocation .. "src/win32_init.c",
+			GLFWLocation .. "src/win32_joystick.c",
+			GLFWLocation .. "src/win32_monitor.c",
+			GLFWLocation .. "src/win32_time.c",
+			GLFWLocation .. "src/win32_thread.c",
+			GLFWLocation .. "src/win32_window.c",
+			GLFWLocation .. "src/wgl_context.c",
+			GLFWLocation .. "src/egl_context.c",
+			GLFWLocation .. "src/osmesa_context.c",
+		}
+
+		defines {
+			"_GLFW_WIN32",
+			"_CRT_SECURE_NO_WARNINGS"
+		}
+
+	filter { "system:windows", "configurations: Release" }
+		buildoptions "/MT"
+
+project "Glad"
+	GladLocation = "Kaleidoscope/vendor/Glad/"
+	kind "StaticLib"
+
+	language "C"
+
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	files {
+		GladLocation .. "include/glad/glad.h",
+		GladLocation .. "include/KHR/khrplatform.h",
+		GladLocation .. "src/glad.c",
+		}
+
+	includedirs {
+		GladLocation .. "include"
+	}
+
+	filter "system:windows"
+		staticruntime "on"
+		systemversion "latest"
+
+	filter { "system:windows", "configurations: Release" }
+		buildoptions "/MT"
+
 project "Kaleidoscope"
 	location "Kaleidoscope"
 	kind "ConsoleApp"
@@ -24,17 +95,21 @@ project "Kaleidoscope"
 		}
 
 	includedirs {
+		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{prj.name}/vendor/GLFW/include"
+		"%{prj.name}/vendor/GLFW/include",
+		"%{prj.name}/vendor/Glad/include"
 	}
 
 	libdirs {
-		"%{prj.name}/vendor/GLFW/lib-vc2019"
+	
+
 	}
 
 	links {
-		"opengl32.lib",
-		"glfw3.lib"
+		"GLFW",
+		"Glad",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
