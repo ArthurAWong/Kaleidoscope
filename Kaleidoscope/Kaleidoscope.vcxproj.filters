@@ -8,10 +8,18 @@
   <ItemGroup>
     <ClInclude Include="src\Event.h" />
     <ClInclude Include="src\Log.h" />
+    <ClInclude Include="src\Shader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Event.cpp" />
     <ClCompile Include="src\Log.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Shader.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\Shaders\testFrag.frag" />
+    <None Include="src\Shaders\testVert.vert" />
+    <None Include="src\testFrag.frag" />
+    <None Include="src\testVert.vert" />
   </ItemGroup>
 </Project>
