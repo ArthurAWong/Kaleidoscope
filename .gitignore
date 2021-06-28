@@ -1,7 +1,8 @@
 # Directories
-.vs/
-bin/
-bin-int/
+.vs/*
+bin/*
+!bin/premake
+bin-int/*
 
 #files
 *.user

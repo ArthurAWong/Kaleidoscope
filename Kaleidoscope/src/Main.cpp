@@ -7,24 +7,7 @@
 
 void framebuffer_size_callback(GLFWwindow*, int width, int height);
 void processInput(GLFWwindow* window);
-/*
-const char* vertexShaderSource = "#version 330 core\n"
-	"layout (location = 0) in vec3 aPos;\n"
-	"layout (location = 1) in vec3 aColor;\n"
-	"out vec3 ourColor;\n"
-	"void main() {\n"
-	"	gl_Position = vec4(aPos, 1.0);\n"
-	"	ourColor = aColor;\n"
-	"}\0";
 
-
-const char* fragmentShaderSource = "#version 330 core\n"
-	"out vec4 FragColor;\n"
-	"in vec3 ourColor;\n"
-	"void main() {\n"
-	"	FragColor = vec4(ourColor, 1.0);\n"
-	"}\0";
-*/
 const unsigned int drawTriangle = 1;
 
 int main(int argc, char** argv) {
@@ -55,52 +38,6 @@ int main(int argc, char** argv) {
 	}
 
 	glViewport(0, 0, 800, 600);
-
-	/*
-
-	// Vertex shader 
-	unsigned int vertexShader;
-	vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-	glCompileShader(vertexShader);
-	// Verify if vertex shader compile works
-	int success;
-	char infoLog[512];
-	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-	if (!success) {
-		glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-		KS_CORE_CRITICAL("Failed to compile shader vertex");
-		KS_CORE_CRITICAL("{}",infoLog);
-	}
-	// Fragment shader
-	unsigned int fragmentShader;
-	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-	glCompileShader(fragmentShader);
-	// Verify if fragment shader compile works
-	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-	if (!success) {
-		glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-		KS_CORE_CRITICAL("Failed to compile fragment shader");
-		KS_CORE_CRITICAL("{}", infoLog);
-	}
-
-	unsigned int shaderProgram;
-	shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	glLinkProgram(shaderProgram);
-	// Verify if linking shaders works
-	glGetShaderiv(shaderProgram, GL_LINK_STATUS, &success);
-	if (!success) {
-		glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-		KS_CORE_CRITICAL("Failed to link shaders");
-		KS_CORE_CRITICAL("{}", infoLog);
-	}
-	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader);
-
-	*/
 
 	Shader ourShader("F:/Dev/Kaleidoscope/Kaleidoscope/src/Shaders/testVert.vert", "F:/Dev/Kaleidoscope/Kaleidoscope/src/Shaders/testFrag.frag");
 
@@ -162,13 +99,7 @@ int main(int argc, char** argv) {
 		glClearColor(0.6f, 0.3f, 0.4f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		//float redValue = sin(counter/100) / 2.0f + 0.5f;
-		//counter++;
-		//int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
-
-		//glUseProgram(shaderProgram);
 		ourShader.use();
-		//glUniform4f(vertexColorLocation, 0.5f, redValue, 0.0f, 1.0f);
 
 		glBindVertexArray(VAO);
 		if (drawTriangle) {
